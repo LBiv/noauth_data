@@ -1,0 +1,33 @@
+<div>
+  <h2>Private Key Setup</h2>
+  <div>
+    <div>
+      <button
+        ng-click='kc.generateNewKeys()'
+      >Generate New Key
+      </button>
+    </div>
+  </div>
+
+  <div>
+    <div>
+      Paste base-64 encoded private encryption key:
+    </div>
+
+    <div>
+      <textarea
+        ng-model='kc.keyInput'
+        rows="4"
+        cols="60"
+      >
+      </textarea>
+    </div>
+
+    <div>
+      <button
+        ng-click='kc.saveKey()'
+      >Use this private key
+      </button>
+    </div>
+  </div>
+</div>
