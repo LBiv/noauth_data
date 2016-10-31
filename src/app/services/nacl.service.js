@@ -10,12 +10,18 @@ angular
         nacl = nacl_lib;
       });
 
+      // rng
+      this.random_bytes = nacl.random_bytes;
+
+      // encoding/decoding functions
       this.to_hex = nacl.to_hex;
       this.from_hex = nacl.from_hex;
       this.encode_utf8 = nacl.encode_utf8;
       this.encode_latin1 = nacl.encode_latin1;
       this.decode_utf8 = nacl.decode_utf8;
       this.decode_latin1 = nacl.decode_latin1;
+
+      // Crypto functions
       this.crypto_hash = nacl.crypto_hash;
       this.crypto_hash_string = nacl.crypto_hash_string;
       this.crypto_box_keypair = nacl.crypto_box_keypair;
@@ -40,5 +46,13 @@ angular
       this.crypto_box_keypair_from_raw_sk = nacl.crypto_box_keypair_from_raw_sk;
       this.crypto_scalarmult = nacl.crypto_scalarmult;
       this.crypto_scalarmult_base = nacl.crypto_scalarmult_base;
+
+      //sizes
+      this.crypto_stream_KEYBYTES = nacl.crypto_stream_KEYBYTES;
+      this.crypto_sign_BYTES = nacl.crypto_sign_BYTES;
+      this.crypto_scalarmult_SCALARBYTES = nacl.crypto_scalarmult_SCALARBYTES;
+      this.crypto_scalarmult_BYTES = nacl.crypto_scalarmult_BYTES;
+      this.crypto_secretbox_KEYBYTES = nacl.crypto_secretbox_KEYBYTES;
+      this.crypto_stream_NONCEBYTES = nacl.crypto_stream_NONCEBYTES;
 
     });

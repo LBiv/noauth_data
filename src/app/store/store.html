@@ -1,11 +1,58 @@
 <div> 
   <h2>Storing Data</h2>
 
-  <h4>To store</h4>
-  <textarea
-    ng-model="sc.textData"
-    rows="10"
-    cols="80"
-  >
-  </textarea>
+  <div>
+    <h4>To store</h4>
+
+    <textarea
+      ng-model="sc.textData"
+      rows="10"
+      cols="80"
+    >
+    </textarea>
+  </div>
+
+  <div>
+    <h4>Who can access this data</h4>
+
+    <button
+      ng-click="sc.buttons.selfAccessor()"
+    >Add Myself
+    </button>
+
+    <div
+      ng-repeat="accessor in sc.accessors"
+    >{{accessor.name}}: {{accessor.key}} 
+
+      <button
+        ng-click="sc.buttons.removeAccessor(accessor)"
+      >Remove Accessor
+      </button>
+    </div>
+
+    <div>Accessor name (only for future reference, it will be kept secret):
+      <input ng-model="sc.newName"/>
+    </div>
+
+    <div>Accessor public key:
+      <textarea
+        ng-model="sc.newKey"
+        rows="2"
+        cols="50"
+      >
+      </textarea>
+    </div>
+
+    <button
+      ng-click="sc.buttons.addAccessor()"
+    >Add Accessor
+    </button>
+  </div>
+
+  <button
+    ng-click="sc.buttons.storeData()"
+    ng-disabled="sc.accessors.length == 0"
+  >Store Data
+  </button>
+
 </div>

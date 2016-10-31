@@ -2,7 +2,9 @@ angular
   .module('noauthData')
   .service(
     'KeysService',
-    function (NaclService) {
+    function (
+      NaclService,
+      UtilsService) {
 
       // This service manages the base64 (ascii) private key.
       var _secretKey = '';
@@ -16,17 +18,10 @@ angular
       function setSecretKey(key) {
         _secretKey = key;
 
-        var publicUint8 = NaclService.crypto_scalarmult_base(
-          new Uint8Array(
-            atob(_secretKey)
-              .split("")
-              .map(function (c) {
-                return c.charCodeAt(0)
-              })));
-
-        _publicKey = btoa(String.fromCharCode.apply(
-          null,
-          publicUint8))
+        _publicKey = UtilsService.encodeB64(
+          NaclService.crypto_scalarmult_base(
+            UtilsService.decodeB64(
+              _secretKey)))
       }
 
       function getSecretKey() {
@@ -40,15 +35,9 @@ angular
       function generateKeys() {
         var keypair = NaclService.crypto_box_keypair();
 
-        _secretKey = btoa(
-          String.fromCharCode.apply(
-            null,
-            keypair['boxSk']));
+        _secretKey = UtilsService.encodeB64(keypair['boxSk']);
 
-        _publicKey = btoa(
-          String.fromCharCode.apply(
-            null,
-            keypair['boxPk']));
+        _publicKey = UtilsService.encodeB64(keypair['boxPk']);
       }
 
     });
