@@ -4,3 +4,12 @@ Yamess Jason Persistence Service (YJPS).
 YJPS is a persistency service for encrypted messages.
 
 The first intended use is for Yamess.
+
+
+YJPS Specification Breakdown
+----------------------------
+
+- yjps-use-cases.txt: YJPS Use Cases. Description and illustrative
+    examples of requests and responses in JSON format
+- yjps-reqs.txt: YJPS User Requirements. A list of requirements of users of
+  various kinds.

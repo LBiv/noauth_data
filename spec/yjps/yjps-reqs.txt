@@ -1,0 +1,4 @@
+YJPS User Requirements
+======================
+
+FIXME TBC after YAMess server requirements
