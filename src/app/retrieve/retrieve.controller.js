@@ -7,8 +7,10 @@
   
   function RetrieveController(
     DatacryptService,
+    UtilsService,
     YJPSService) {
 
+    var _decrypted;
     var rc = this;
 
     rc.buttons = {
@@ -34,7 +36,8 @@
           keyId: rc.inputs.keyslotId
         })
         .then(function (response) {
-          rc.displays.data = DatacryptService.decryptData(response.data);
+          _decrypted = DatacryptService.decryptData(response.data);
+          rc.displays.data = UtilsService.decode_utf8(_decrypted);
         });
     }
 
@@ -49,7 +52,3 @@
   }
 
 })();
-
-      
-
-  

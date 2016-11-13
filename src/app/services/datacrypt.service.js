@@ -9,7 +9,10 @@ angular
 
       this.encryptUtf8 = encryptUtf8;
       this.encryptFile = encryptFile;
+      this.encryptData = encryptData;
 
+      this.decryptUtf8 = decryptUtf8;
+      this.decryptFile = decryptFile;
       this.decryptData = decryptData;
 
       function encryptUtf8(plainutf8, pubkeys) {
@@ -20,44 +23,6 @@ angular
 
       function encryptFile(plainfile, pubkeys) {
         return encryptData(plainfile, pubkeys);
-      }
-
-      function decryptData(cipherObj) {
-
-        var secretkey = KeysService.getSecretKey();
-        var pubkey = KeysService.getPublicKey();
-
-        var binaryEphem = UtilsService.decodeB64(
-            cipherObj['ephemeral']);
-
-        var keyKey = NaclService.crypto_box_precompute(
-          binaryEphem,
-          UtilsService.decodeB64(
-            secretkey));
-
-        var binaryPubkey = UtilsService.decodeB64(pubkey);
-        var concatenated = new Uint8Array(binaryEphem.length + binaryPubkey.length);
-        concatenated.set(binaryPubkey);
-        concatenated.set(binaryEphem, binaryPubkey.length);
-        var keyNonce = NaclService.crypto_hash(concatenated).slice(0, NaclService.crypto_stream_NONCEBYTES);
-
-        var dataNonceKey = NaclService.crypto_stream_xor(
-          UtilsService.decodeB64(
-            cipherObj['encrypted_key']),
-          keyNonce,
-          keyKey['boxK']);
-
-        var dataNonce = dataNonceKey.slice(0, NaclService.crypto_stream_NONCEBYTES);
-        var dataKey = dataNonceKey.slice(
-          NaclService.crypto_stream_NONCEBYTES,
-          NaclService.crypto_stream_KEYBYTES + NaclService.crypto_stream_NONCEBYTES);
-
-        return NaclService.decode_utf8(
-          NaclService.crypto_stream_xor(
-            UtilsService.decodeB64(
-              cipherObj['encrypted_data']),
-            dataNonce,
-            dataKey));
       }
 
       function encryptData(plaindata, pubkeys) {
@@ -101,6 +66,52 @@ angular
           });
 
         return result;
+      }
+
+      function decryptUtf8(cipherObj) {
+        return NaclService.decode_utf8(
+          decryptData(cipherObj));
+      }
+
+      function decryptFile(cipherObj) {
+        return decryptData(cipherObj);
+      }
+
+      function decryptData(cipherObj) {
+
+        var secretkey = KeysService.getSecretKey();
+        var pubkey = KeysService.getPublicKey();
+
+        var binaryEphem = UtilsService.decodeB64(
+            cipherObj['ephemeral']);
+
+        var keyKey = NaclService.crypto_box_precompute(
+          binaryEphem,
+          UtilsService.decodeB64(
+            secretkey));
+
+        var binaryPubkey = UtilsService.decodeB64(pubkey);
+        var concatenated = new Uint8Array(binaryEphem.length + binaryPubkey.length);
+        concatenated.set(binaryPubkey);
+        concatenated.set(binaryEphem, binaryPubkey.length);
+        var keyNonce = NaclService.crypto_hash(concatenated).slice(0, NaclService.crypto_stream_NONCEBYTES);
+
+        var dataNonceKey = NaclService.crypto_stream_xor(
+          UtilsService.decodeB64(
+            cipherObj['encrypted_key']),
+          keyNonce,
+          keyKey['boxK']);
+
+        var dataNonce = dataNonceKey.slice(0, NaclService.crypto_stream_NONCEBYTES);
+        var dataKey = dataNonceKey.slice(
+          NaclService.crypto_stream_NONCEBYTES,
+          NaclService.crypto_stream_KEYBYTES + NaclService.crypto_stream_NONCEBYTES);
+
+        return NaclService.crypto_stream_xor(
+          UtilsService.decodeB64(
+            cipherObj['encrypted_data']),
+          dataNonce,
+          dataKey);
       }
 
 

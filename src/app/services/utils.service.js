@@ -2,10 +2,12 @@ angular
   .module('noauthData')
   .service(
     'UtilsService',
-    function () {
+    function (NaclService) {
 
       this.encodeB64 = encodeB64;
       this.decodeB64 = decodeB64;
+      this.encode_utf8 = NaclService.encode_utf8;
+      this.decode_utf8 = NaclService.decode_utf8;
 
       function encodeB64(uint8array) {
         return btoa(
