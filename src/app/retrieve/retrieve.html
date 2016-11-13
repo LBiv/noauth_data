@@ -1,0 +1,36 @@
+<div>
+  <h2>Data Retrieval</h2>
+
+  <div>
+    <h4>Retrieve:</h4>
+
+    <div>Data Id: 
+      <input
+        ng-model="rc.inputs.dataId"
+      />
+    <div>
+
+    <div>Keyslot Id:
+      <input
+        ng-model="rc.inputs.keyslotId"
+      />
+    </div>
+
+    <div>Retrieve Data: 
+      <button
+        ng-click="rc.buttons.retrieveData()"
+      >Retrieve Data
+      </button>
+    </div>
+
+    <div>{{rc.display.data}}
+    </div> 
+
+    <div>
+      <button
+        ng-click="rc.buttons.asFile()"
+      >As File
+      </button>
+    </div>
+
+</div>

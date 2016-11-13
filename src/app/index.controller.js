@@ -23,7 +23,7 @@
       providerMode: providerModeButton,
       keysMode: keysModeButton,
       storeMode: storeModeButton,
-      loadMode: loadModeButton,
+      retrieveMode: retrieveModeButton,
       showSecret: showSecretButton,
       showPublic: showPublicButton
     }
@@ -54,8 +54,8 @@
       $state.go('store');
     }
 
-    function loadModeButton() {
-      $state.go('load');
+    function retrieveModeButton() {
+      $state.go('retrieve');
     }
 
     function showSecretButton() {

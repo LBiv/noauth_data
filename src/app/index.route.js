@@ -19,11 +19,11 @@
         controller: 'StoreController',
         controllerAs: 'sc'
       })
-      .state('load', {
-        url: '/load/',
-        templateUrl: 'app/load/load.html',
-        controller: 'LoadController',
-        controllerAs: 'lc'
+      .state('retrieve', {
+        url: '/retrieve/',
+        templateUrl: 'app/retrieve/retrieve.html',
+        controller: 'RetrieveController',
+        controllerAs: 'rc'
       })
       .state('provider', {
         url: '/provider/',

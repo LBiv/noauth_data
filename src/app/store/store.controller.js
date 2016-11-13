@@ -7,7 +7,8 @@
   
   function StoreController(
     DatacryptService,
-    KeysService) {
+    KeysService,
+    YJPSService) {
 
     var sc = this;
 
@@ -21,7 +22,7 @@
       addAccessor: addAccessorButton,
       storeData: storeDataButton,
       selfAccessor: selfAccessorButton
-    }
+    };
 
     activate();
 
@@ -57,23 +58,13 @@
     }
 
     function storeDataButton() {
-      var encObj = DatacryptService.encryptData(
+      var encObj = DatacryptService.encryptUtf8(
         sc.textData,
         _.map(
           sc.accessors,
           'key'));
 
-      console.log(encObj);
-
-      var recObj = {
-        'ephemeral': encObj['ephemeral'],
-        'encrypted_data': encObj['encrypted_data'],
-        'encrypted_key': encObj['encrypted_key'][0]
-      }
-
-      var decObj = DatacryptService.decryptData(recObj);
-
-      console.log(decObj);
+      YJPSService.storeData(encObj);
     }
 
     function activate() {
