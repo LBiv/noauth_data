@@ -8,16 +8,19 @@
   function IndexController(
     $state,
     $mdDialog,
+    ProviderService,
     KeysService) {
 
     var _secretDisplay;
     var _publicDisplay;
     var ic = this;
 
-    ic.currentSecret= currentSecret;
-    ic.currentPublic= currentPublic;
+    ic.currentSecret = currentSecret;
+    ic.currentPublic = currentPublic;
+    ic.currentProvider = currentProvider;
 
     ic.buttons = {
+      providerMode: providerModeButton,
       keysMode: keysModeButton,
       storeMode: storeModeButton,
       loadMode: loadModeButton,
@@ -33,6 +36,14 @@
 
     function currentPublic() {
       return _.truncate(KeysService.getPublicKey(), {'length': 11});
+    }
+
+    function currentProvider() {
+      return ProviderService.getProviderUrl();
+    }
+
+    function providerModeButton() {
+      $state.go('provider')
     }
 
     function keysModeButton() {

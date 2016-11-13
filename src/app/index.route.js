@@ -24,6 +24,12 @@
         templateUrl: 'app/load/load.html',
         controller: 'LoadController',
         controllerAs: 'lc'
+      })
+      .state('provider', {
+        url: '/provider/',
+        templateUrl: 'app/provider/provider.html',
+        controller: 'ProviderController',
+        controllerAs: 'pc'
       });
 
     $urlRouterProvider.otherwise('/keys/');
