@@ -104,13 +104,13 @@ CRO is single request-response interaction:
 [on success]:
 -- ephemeral public key
 -- key slot id
--- encrypted message
+-- encrypted object
 
 example of response JSON binding:
 {
   "ephPubKey" : <base64-encoded-ephPubKey-as-JSON-String>,
   "keySlot" : <base64-encoded-key-slot-n-as-JSON-string>
-  "encMsg" : <base64-encoded-encMsg-as-JSON-String>,
+  "encObj" : <base64-encoded-encObj-as-JSON-String>,
 }
 
 [on failure]:
