@@ -41,22 +41,31 @@ Use Cases
 -----------------------------------------------------------------------------
 Title: Start New Transaction
 Id: SNT
+Route: starttx
 FIXME TBC
 
 -----------------------------------------------------------------------------
 Title: Roll Back Transaction 
 Id: RBT
+Route: rollbacktx
 FIXME TBC
 
 -----------------------------------------------------------------------------
 Title: Commit Transaction
-Id: CT
+Id: CMT
+Route: committx
+FIXME TBC
+
+-----------------------------------------------------------------------------
+Title: Client Cancels (deletes) Transaction
+Id: CXT
+Route: canceltx
 FIXME TBC
 
 -----------------------------------------------------------------------------
 Title: Client Stores an Object
 Id: CSO
-Route: store
+Route: storecrypt
 
 CSO is a single request-response interaction:
 
@@ -117,6 +126,7 @@ FIXME TODO: errors must include "too big message", "too big transaction",
 -----------------------------------------------------------------------------
 Title: Client Retrieves an Object
 Id: CRO
+Route: getcrypt
 
 CRO is single request-response interaction:
 
@@ -152,5 +162,9 @@ FIXME TODO: errors must include "unknown transaction id",
 
 
 -----------------------------------------------------------------------------
-Title: Delete Object
+Title: Delete Object ?
 Id: DO
+Route: delcrypt? 
+FIXME should we delete object at once or delete keyslots (by one or several)
+  until there is none, then cleanup?
+
