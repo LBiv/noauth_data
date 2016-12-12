@@ -1,9 +1,9 @@
-Yamess Jason Persistence Service (YJPS). 
+MEMES Jason Persistence Service (YJPS). 
 ======================================== 
 
-YJPS is a persistency service for encrypted messages.
+YJPS is a persistency service for optionally encrypted data objects.
 
-The first intended use is for Yamess.
+The first intended use is for MEMES.
 
 
 YJPS Specification Breakdown
