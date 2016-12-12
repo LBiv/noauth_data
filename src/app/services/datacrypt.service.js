@@ -3,6 +3,7 @@ angular
   .service(
     'DatacryptService',
     function (
+      CryptoConstants,
       NaclService,
       UtilsService,
       KeysService) {
@@ -27,14 +28,15 @@ angular
 
       function encryptData(plaindata, pubkeys) {
         var result = {};
+        result[CryptoConstants.YJPS.DATA] = {};
 
         var ephemeral_pair =  NaclService.crypto_box_keypair();
-        result.ephemeral = UtilsService.encodeB64(ephemeral_pair['boxPk']);
+        result[CryptoConstants.YJPS.DATA][CryptoConstants.CONTENT.EPHEMERAL_KEY] = UtilsService.encodeB64(ephemeral_pair['boxPk']);
 
         var dataNonce = NaclService.crypto_box_random_nonce();
         var dataKey = NaclService.random_bytes(NaclService.crypto_stream_KEYBYTES);
 
-        result.encrypted_data = UtilsService.encodeB64(
+        result[CryptoConstants.YJPS.DATA][CryptoConstants.CONTENT.BODY] = UtilsService.encodeB64(
           NaclService.crypto_stream_xor(
             plaindata,
             dataNonce,
@@ -44,7 +46,7 @@ angular
         dataNonceKey.set(dataNonce);
         dataNonceKey.set(dataKey, NaclService.crypto_stream_NONCEBYTES);
 
-        result.encrypted_key = _.map(
+        result[CryptoConstants.YJPS.KEYS] = _.map(
           pubkeys,
           function (pubkey) {
 
@@ -83,7 +85,7 @@ angular
         var pubkey = KeysService.getPublicKey();
 
         var binaryEphem = UtilsService.decodeB64(
-            cipherObj['ephemeral']);
+            cipherObj[CryptoConstants.YJPS.DATA][CryptoConstants.CONTENT.EPHEMERAL_KEY]);
 
         var keyKey = NaclService.crypto_box_precompute(
           binaryEphem,
@@ -98,7 +100,7 @@ angular
 
         var dataNonceKey = NaclService.crypto_stream_xor(
           UtilsService.decodeB64(
-            cipherObj['encrypted_key']),
+            cipherObj[CryptoConstants.YJPS.KEY]),
           keyNonce,
           keyKey['boxK']);
 
@@ -109,7 +111,7 @@ angular
 
         return NaclService.crypto_stream_xor(
           UtilsService.decodeB64(
-            cipherObj['encrypted_data']),
+            cipherObj[CryptoConstants.YJPS.DATA][CryptoConstants.CONTENT.BODY]),
           dataNonce,
           dataKey);
       }

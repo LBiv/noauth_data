@@ -3,8 +3,8 @@
   'use strict';
 
   angular
-    .module('noauthData')
-    .constant('malarkey', malarkey)
-    .constant('moment', moment);
+    .module('noauthData');
+//    .constant('malarkey', malarkey)
+//    .constant('moment', moment);
 
 })();

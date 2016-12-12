@@ -30,6 +30,12 @@
         templateUrl: 'app/provider/provider.html',
         controller: 'ProviderController',
         controllerAs: 'pc'
+      })
+      .state('test', {
+        url: '/test/',
+        templateUrl: 'app/test/test.html',
+        controller: 'TestController',
+        controllerAs: 'tc'
       });
 
     $urlRouterProvider.otherwise('/keys/');

@@ -25,10 +25,10 @@
     <![endif]-->
     <div ng-controller="IndexController as ic">
       <div>
-        <button ng-click="ic.buttons.providerMode()">Service Provider</button>
-        <button ng-click="ic.buttons.keysMode()">Keys Set Up</button>
-        <button ng-click="ic.buttons.storeMode()">Store Data</button>
-        <button ng-click="ic.buttons.retrieveMode()">Retrieve Data</button>
+        <md-button ng-click="ic.buttons.providerMode()">Service Provider</md-button>
+        <md-button ng-click="ic.buttons.keysMode()">Keys Set Up</md-button>
+        <md-button ng-click="ic.buttons.storeMode()">Store Data</md-button>
+        <md-button ng-click="ic.buttons.retrieveMode()">Retrieve Data</md-button>
       </div>
 
       <div>
@@ -44,8 +44,8 @@
       </div>
 
       <div>
-        <button ng-click="ic.buttons.showSecret()">Show Secret Key</button>
-        <button ng-click="ic.buttons.showPublic()">Show Public Key</button>
+        <md-button ng-click="ic.buttons.showSecret()">Show Secret Key</md-button>
+        <md-button ng-click="ic.buttons.showPublic()">Show Public Key</md-button>
       </div>
     </div>
     <div ui-view></div>

@@ -6,7 +6,7 @@ angular
 
       // This service provides wrappers for calling to yjps. 
       this.storeData = storeData;
-      this.retrieveData = storeData;
+      this.retrieveData = retrieveData;
 
       function storeData(toStore) {
         return $http.post(UrlService.storeData(), toStore);

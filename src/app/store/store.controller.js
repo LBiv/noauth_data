@@ -64,6 +64,7 @@
           sc.accessors,
           'key'));
 
+      console.log(encObj);
       YJPSService.storeData(encObj);
     }
 

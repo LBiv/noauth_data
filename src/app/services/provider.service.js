@@ -5,8 +5,8 @@ angular
     function () {
 
       // This service manages the service provider which we attempt to access.
-      var _url = '';
-      var _port = '';
+      var _url = 'http://localhost';
+      var _port = '9000';
 
       this.getProviderUrl = getProviderUrl;
       this.getProviderPort = getProviderPort;

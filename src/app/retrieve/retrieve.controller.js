@@ -32,11 +32,12 @@
     function retrieveDataButton() {
       YJPSService.retrieveData(
         {
-          dataId: rc.inputs.dataId,
-          keyId: rc.inputs.keyslotId
+          data_id: rc.inputs.dataId,
+          keyslot_id: rc.inputs.keyslotId
         })
         .then(function (response) {
           _decrypted = DatacryptService.decryptData(response.data);
+          console.log(_decrypted);
           rc.displays.data = UtilsService.decode_utf8(_decrypted);
         });
     }

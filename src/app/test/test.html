@@ -2,13 +2,36 @@
   <h2>Test!!!</h2>
 
   <div>
-    {{tc.displays.testResponse}}
+    {{tc.displays.storeResponse}}
   </div>
 
   <div>
     <button
-      ng-click='tc.buttons.testButton()'
-    >Send a Test Request
+      ng-click='tc.buttons.storeData()'
+    >Send a store Request
+    </button>
+  </div>
+
+  <div>
+    {{tc.displays.getResponse}}
+  </div>
+
+  <div>
+    <div>
+      <input
+        ng-model='tc.inputs.dataId'
+      >
+      </input>
+
+      <input
+        ng-model='tc.inputs.keyslotId'
+      >
+      </input>
+    </div>
+    
+    <button
+      ng-click='tc.buttons.getData()'
+    >Send a get request
     </button>
   </div>
 </div>
