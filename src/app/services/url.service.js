@@ -9,11 +9,11 @@ angular
       this.retrieveData = retrieveData;
 
       function storeData() {
-        return ProviderService.getProviderUrl() + ':' + ProviderService.getProviderPort() + '/data/store';
+        return ProviderService.getProviderUrl() + ':' + ProviderService.getProviderPort() + '/storecrypt';
       }
 
       function retrieveData() {
-        return ProviderService.getProviderUrl() + ':' + ProviderService.getProviderPort() + '/data/retrieve';
+        return ProviderService.getProviderUrl() + ':' + ProviderService.getProviderPort() + '/getcrypt';
       }
 
     });
