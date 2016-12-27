@@ -1,0 +1,50 @@
+mm Communication Use Cases
+==========================
+
+@see readme
+
+Use Case Attributes
+-------------------
+
+@see yjps-use-cases.txt
+
+
+Communication Model
+-------------------
+
+mm communicates on top of HTTPS. There are two types of connections:
+
+- mm client to mm server
+- mm server to mm server
+
+The communication model for both types of connection is identical. Therefore,
+hereinafter in this document we refer to HTTPS client as Client regardless of
+whether it is mm client or mm server except where elaboration is required. We
+always refer to mm server that is HTTP server as Server.
+
+The communication model is identical to that described in yjps-use-cases.txt
+with the following additions:
+
+- the protocol always works on top of HTTPS (port 443);
+- there is implicit state shared between Client and Server;
+- the shared state is associated with session ID that is an array of ASCII
+  characters;
+- session ID is carried by some proocol messages as JSON string with the key
+  "sessId".
+
+
+Request Route Notation
+----------------------
+
+@see yjps-use-cases.txt
+
+
+Use Cases
+---------
+
+-----------------------------------------------------------------------------
+Title: Client Sends Message to 
+Id: MMCUD
+Route: upload
+
+This 

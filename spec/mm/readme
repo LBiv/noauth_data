@@ -1,0 +1,34 @@
+memesMail
+=========
+
+MemesMail (hereinafter mm) is a mail-like app in which:
+
+1. a user has an account on mm server (hereinafter "home server")
+2. to send a message, a user makes the client part of the app (hereinafter
+    Client)
+  - stores the message at the sender's home server as an object
+  - asks 
+3. sender's home server handles the message in one of 2 ways:
+a. for the message receivers whose home server is the sender's home server,
+  it stores the message in the area of the server's store areas that belong to
+  such receivers
+b. if the home server of at least one receiver is different from the sender's
+  home server, the sender's home server:
+i. persist the message in the area of its store designated for outgoing
+  messages
+ii. until success or last message's expiration time, whichever is earlier,
+  keeps trying to notify every such receiver home server that the sender's home
+  server has a message or messages for the receiver's home server
+4. upon receiving a message notification from a sender home server, the receiver
+  home server keeps trying to, until success messages expiration time (passed
+  in message notification), whichever is earlier:
+a. retrieve messages from sender's store
+b. notify the sender's home server about the successful retrieval of a message
+5.
+
+mm Specification Breakdown
+--------------------------
+
+mmcomm-use-cases.txt -- use cases of communication between mm clients and mm
+  server and between mm sender and receiver servers.
+
